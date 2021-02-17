@@ -5,6 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
     <!--default-init-method="init" default-destroy-method="destroy">-->
     <context:annotation-config></context:annotation-config>
+    <context:property-placeholder location="application.properties"></context:property-placeholder>
 
     <bean id="bankService" class="com.example.atm.BankService">
         <!--init-method="init" destroy-method="destroy">-->
@@ -26,6 +27,11 @@
         <property name="id" value="1"></property>
         <property name="account" value="Hello User of account!"></property>
         <property name="record" value="Your records here!"></property>
+    </bean>
+       
+    <bean id="card" class="com.example.atm.Card" autowire="constructor">
+              &lt;!&ndash; <property name="name" value="ATM"></property>&ndash;&gt;
+              &lt;!&ndash; <property name="card" ref="visa"></property>&ndash;&gt;
     </bean>
 
 </beans>
