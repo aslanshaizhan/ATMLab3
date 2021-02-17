@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--default-init-method="init" default-destroy-method="destroy">-->
+    <context:annotation-config></context:annotation-config>
+
+    <bean id="bankService" class="com.example.atm.BankService">
+        <!--init-method="init" destroy-method="destroy">-->
+        <property name="Dburl" value="jdbc:mysql://localhost:4404?dbName"></property>
+        <property name="Dbuser" value="root"></property>
+        <property name="Dbpassword" value="root"></property>
+    </bean>
+
+    <bean id="template" abstract="true">
+        <property name="id" value="-1"></property>
+    </bean>
+
+    <bean id="parent" class="com.example.atm.Bank" parent="template">
+        <property name="username" value="This is a Bank"></property>
+        <property name="message" value="Welcome to Bank!"></property>
+    </bean>
+
+    <bean id="child" class="com.example.atm.Card" parent="parent">
+        <property name="id" value="1"></property>
+        <property name="account" value="Hello User of account!"></property>
+        <property name="record" value="Your records here!"></property>
+    </bean>
+
+</beans>
